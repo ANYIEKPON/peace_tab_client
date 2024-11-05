@@ -157,8 +157,8 @@ const Navbar = () => {
               </div>
             </div>
 
-            <div className="navBar" onClick={openNav}>
-              <FiMenu size={30} />
+            <div className="navBar">
+              <FiMenu onClick={openNav} size={30} />
             </div>
           </div>
         </div>
