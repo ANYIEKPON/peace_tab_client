@@ -29,7 +29,6 @@ const Navbar = () => {
   }, [localStorage.getItem("user")]);
 
   useEffect(() => {
-    window.addEventListener("load", responsive);
     window.addEventListener("resize", responsive);
     // return () => window.removeEventListener("resize", responsive);
   }, []);
@@ -40,6 +39,10 @@ const Navbar = () => {
   };
 
   console.log(user);
+
+  const openNav = () => {
+    setNav((prev) => !prev);
+  };
 
   const handleNav = () => {
     setNav((prev) => !prev);
@@ -154,7 +157,7 @@ const Navbar = () => {
               </div>
             </div>
 
-            <div className="navBar" onClick={handleNav}>
+            <div className="navBar" onClick={openNav}>
               <FiMenu size={30} />
             </div>
           </div>
