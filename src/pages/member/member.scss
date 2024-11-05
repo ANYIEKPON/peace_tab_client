@@ -1,0 +1,133 @@
+.memberContner {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+
+  .memberWraper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    gap: 10px;
+    // margin-left: 1rem;
+    padding: 10px 0px;
+
+    .submtBtn {
+      display: flex;
+      padding: 10px;
+      justify-content: center;
+      align-items: center;
+      width: 90%;
+
+      button {
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        width: 150px;
+        color: white;
+        background-color: rgb(137, 145, 248);
+        cursor: pointer;
+      }
+    }
+    hr {
+      width: 90%;
+    }
+
+    .pyp {
+      display: flex;
+      gap: 10px;
+      padding: 5px 20px;
+      width: 90%;
+      border-radius: 5px;
+      -webkit-box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.4);
+      box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.4);
+      background-color: rgb(248, 247, 247);
+
+      label {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bolder;
+      }
+
+      span {
+        // background-color: rgb(248, 243, 243);
+        border-radius: 4px;
+        padding: 5px;
+      }
+    }
+  }
+}
+
+$medium: 768px;
+$small: 640px;
+$large: 981px;
+
+@media screen and (min-width: $large) {
+  .memberContner {
+    display: flex;
+    width: 90%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+
+    .memberWraper {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 80%;
+      gap: 10px;
+      // margin-left: 1rem;
+      padding: 10px 0px;
+
+      .submtBtn {
+        display: flex;
+        padding: 10px;
+        justify-content: center;
+        align-items: center;
+        width: 90%;
+
+        button {
+          padding: 10px;
+          border: none;
+          border-radius: 5px;
+          width: 150px;
+          color: white;
+          background-color: rgb(137, 145, 248);
+          cursor: pointer;
+        }
+      }
+      hr {
+        width: 90%;
+      }
+
+      .pyp {
+        display: flex;
+        gap: 10px;
+        padding: 5px 20px;
+        width: 90%;
+        border-radius: 5px;
+        -webkit-box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.4);
+        box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.4);
+        background-color: rgb(248, 247, 247);
+
+        label {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-weight: bolder;
+        }
+
+        span {
+          // background-color: rgb(248, 243, 243);
+          border-radius: 4px;
+          padding: 5px;
+        }
+      }
+    }
+  }
+}

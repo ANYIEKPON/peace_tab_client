@@ -1,0 +1,72 @@
+.login {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+
+  .lContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    margin-top: 2rem;
+
+    .lInput {
+      padding: 15px;
+      outline: none;
+      border: none;
+      border-radius: 7px;
+      width: 70%;
+      margin-top: 2rem;
+    }
+
+    .lButton {
+      padding: 10px 35px;
+      border: none;
+      margin-top: 1.5rem;
+      cursor: pointer;
+      background-color: rgb(132, 132, 250);
+      color: white;
+      border-radius: 5px;
+    }
+  }
+}
+
+$large: 981px;
+@media screen and (min-width: $large) {
+  .login {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+
+    .lContainer {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 80%;
+      margin-top: 2rem;
+
+      .lInput {
+        padding: 15px;
+        outline: none;
+        border: none;
+        border-radius: 7px;
+        width: 30%;
+        margin-top: 2rem;
+      }
+
+      .lButton {
+        padding: 10px 35px;
+        border: none;
+        margin-top: 1.5rem;
+        cursor: pointer;
+        background-color: rgb(132, 132, 250);
+        color: white;
+        border-radius: 5px;
+      }
+    }
+  }
+}

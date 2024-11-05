@@ -1,0 +1,14 @@
+.App {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: rgb(222, 222, 240);
+}
+
+.link {
+  display: flex;
+  text-decoration: inherit;
+  gap: 5px;
+  color: white;
+}
