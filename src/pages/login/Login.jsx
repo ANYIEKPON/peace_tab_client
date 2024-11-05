@@ -23,7 +23,7 @@ const Login = () => {
 
     try {
       const res = await axios.post(
-        "hhttps://peace-tab-database.onrender.com/api/auth/login",
+        "https://peace-tab-database.onrender.com/api/auth/login",
         credentials
       );
       const usss = res.data.details.username;
