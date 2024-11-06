@@ -10,7 +10,7 @@ const TakeAttendance = () => {
   const [seletDate, setSelectdate] = useState(actaDate);
   const [objtMem, setObjtMem] = useState({});
   const [objtMembr, setObjtMember] = useState([]);
-  const [entredNum, setEnterNum] = useState(" ");
+  const [entredNum, setEnterNum] = useState("");
 
   useEffect(() => {
     const getAll = async () => {
