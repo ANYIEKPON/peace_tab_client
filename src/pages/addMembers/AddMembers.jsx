@@ -26,9 +26,11 @@ const AddMembers = () => {
   const [worker, setWorker] = useState("");
   const [marital, setMarital] = useState("");
   const [newMembers, setNewMembers] = useState("");
+  const [serialNo, setSerialno] = useState("");
+  const [fullName, setFullName] = useState(" ");
+  const [action, setAction] = useState(false);
+  const [allMembers, setallMembers] = useState([]);
   const [members, setMembers] = useState({
-    full_names: "",
-    serial_no: "",
     email: "",
     phone_no: null,
     address: "",
@@ -42,6 +44,20 @@ const AddMembers = () => {
 
   const location = useLocation();
   const id = location.state?.id;
+
+  useEffect(() => {
+    const getMembrs = async () => {
+      try {
+        const res = await axios.get(
+          "https://peace-tab-database.onrender.com/api/member"
+        );
+        setallMembers(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getMembrs();
+  }, [serialNo, fullName]);
 
   useEffect(() => {
     const fetchMember = async () => {
@@ -66,6 +82,18 @@ const AddMembers = () => {
     setNewMembers(value);
   };
 
+  const handleNames = (e) => {
+    const value = e.target.value;
+    const trimmedVal = value.trim();
+    setFullName(trimmedVal);
+  };
+
+  const handleSerialNo = (e) => {
+    const value = e.target.value;
+    const trimmedVal = value.toUpperCase().trim();
+    setSerialno(trimmedVal);
+  };
+
   const maritalSta = (e) => {
     if (e.target.value === "Married") {
       setStatus(true);
@@ -81,6 +109,8 @@ const AddMembers = () => {
 
   const subMembers = {
     ...members,
+    full_names: fullName,
+    serial_no: serialNo,
     worker: worker,
     marital_status: marital,
     new_member: newMembers,
@@ -99,13 +129,24 @@ const AddMembers = () => {
         console.log(error);
       }
     } else {
+      allMembers.forEach((member) => {
+        const rest = member.full_names === trimmedVal ? "true" : "false";
+        if (rest === "true") {
+          alert("Name already in Databaase, plese change");
+        }
+      });
+
+      allMembers.forEach((member) => {
+        const rest = member.serial_no === trimmedVal ? "true" : "false";
+        if (rest === "true") {
+          alert("Serial No alredy in Database, Please change");
+        }
+      });
       try {
         await axios.post(
           "https://peace-tab-database.onrender.com/api/member/create_memeber",
           subMembers
         );
-        // alert("Member added");
-        // clearContent();
         alert("Member created");
         wimdow.location.reload();
       } catch (error) {
@@ -127,7 +168,7 @@ const AddMembers = () => {
               type="text"
               placeholder="Full Names"
               id="full_names"
-              onChange={handleChange}
+              onChange={handleNames}
               value={members?.full_names}
             />
           </div>
@@ -137,13 +178,14 @@ const AddMembers = () => {
               type="text"
               placeholder="Serial Number"
               id="serial_no"
-              onChange={handleChange}
+              onChange={handleSerialNo}
               value={members?.serial_no}
             />
           </div>
           <div className="membrs">
             <label>Email </label>
             <input
+              disabled={action}
               type="email"
               placeholder="Email"
               id="email"
