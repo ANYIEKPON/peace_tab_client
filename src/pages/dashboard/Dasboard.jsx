@@ -13,6 +13,13 @@ const Dasboard = () => {
   const [day, setDay] = useState(0);
   const [yearMonth, setYearMonth] = useState(0);
 
+  const handleChange = (e) => {
+    e.preventDefault();
+    setMonth(e.target.value);
+  };
+
+  const daay = month.split("-")[1] - 1;
+
   const calender = [
     "January",
     "February",
@@ -28,10 +35,7 @@ const Dasboard = () => {
     "December",
   ];
 
-  const handleChange = (e) => {
-    e.preventDefault();
-    setMonth(e.target.value);
-  };
+  console.log(typeof month);
 
   useEffect(() => {
     const getMembers = async () => {
@@ -47,9 +51,7 @@ const Dasboard = () => {
     getMembers();
 
     const getNoBdays = () => {
-      const presMont = new Date();
-      const months = presMont.getMonth() + 1;
-      setYearMonth(months - 1);
+      setYearMonth(daay);
 
       const newArr = [];
 
@@ -60,7 +62,7 @@ const Dasboard = () => {
       });
 
       const exactNum = newArr.filter((dayNum) => {
-        return dayNum === months;
+        return dayNum === daay;
       });
 
       setDay(exactNum.length);
@@ -82,19 +84,19 @@ const Dasboard = () => {
             value={month}
             min="2024-10"
           />
-          <button className="btbtn">Check</button>
+          {/* <button className="btbtn">Check</button> */}
         </div>
         <div className="dashboardCard">
           <div className="card">
-            <span>Total Members for {calender[yearMonth]}</span>
+            <span>Total Members for {calender[daay]}</span>
             <h3>6</h3>
           </div>
           <div className="card">
-            <span>Total New Member for {calender[yearMonth]}</span>
+            <span>Total New Member for {calender[daay]}</span>
             <h3>6</h3>
           </div>
           <div className="card">
-            <span>Numbers of Birthday for {calender[yearMonth]}</span>
+            <span>Numbers of Birthday for {calender[daay]}</span>
             <h3>{day}</h3>
           </div>
         </div>
