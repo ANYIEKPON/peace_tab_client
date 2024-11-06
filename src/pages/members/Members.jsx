@@ -56,7 +56,9 @@ const Members = () => {
               <tr className="tableData" key={member._id}>
                 <td className="sn">{member.serial_no}</td>
                 <td className="editable">
-                  <button className="edit">Edit</button>
+                  <Link className="links" to={`/member/${member._id}`}>
+                    <button className="edit">Edit</button>
+                  </Link>
                   <button
                     id={member._id}
                     className="delete"
