@@ -12,7 +12,7 @@ const Navbar = () => {
   const [searchOpen, setOpenSearch] = useState(false);
   const [nav, setNav] = useState(false);
   const [user, setUser] = useState(localStorage.getItem("user"));
-  const [showSide, setShowSide] = useState(true);
+  const [showSide, setShowSide] = useState(false);
 
   const responsive = () => {
     const windowWidth = window.screen.width;
@@ -24,13 +24,13 @@ const Navbar = () => {
   };
 
   // window.addEventListener("resize", responsive);
-  useEffect(() => {
-    setUser(localStorage.getItem("user"));
-  }, [localStorage.getItem("user")]);
+  // useEffect(() => {
+  //   setUser(localStorage.getItem("user"));
+  // }, [localStorage.getItem("user")]);
 
   useEffect(() => {
     window.addEventListener("resize", responsive);
-    // return () => window.removeEventListener("resize", responsive);
+    window.addEventListener("load", responsive);
   }, []);
 
   const handleClick = () => {};
@@ -38,10 +38,9 @@ const Navbar = () => {
     setOpenSearch((prev) => !prev);
   };
 
-  console.log(user);
-
   const openNav = () => {
     setNav((prev) => !prev);
+    console.log("done");
   };
 
   const handleNav = () => {
