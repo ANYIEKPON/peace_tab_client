@@ -108,6 +108,11 @@ const Member = () => {
           <span>{getmember.profession}</span>
         </div>
         <hr />
+        <div className="pyp">
+          <label>New Member:</label>
+          <span>{getmember.new_member}</span>
+        </div>
+        <hr />
         <div onClick={openEdit} className="submtBtn">
           <button>Edit</button>
         </div>

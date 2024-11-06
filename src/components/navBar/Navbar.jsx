@@ -60,7 +60,7 @@ const Navbar = () => {
             <div className="icon">
               <IoMdContact size={30} />
             </div>
-            <span>King</span>
+            <span>Admin</span>
           </div>
           <div className="right">
             {showSide ? (

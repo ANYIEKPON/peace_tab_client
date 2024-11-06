@@ -49,6 +49,7 @@ const Members = () => {
             <th>Bus-stops</th>
             <th className="bstop">Birthday</th>
             <th>Profession</th>
+            <th>New Member</th>
           </tr>
           {members &&
             members.map((member) => (
@@ -75,12 +76,13 @@ const Members = () => {
                 <td>{member.bus_stop}</td>
                 <td className="bstop">{member.birth_day}</td>
                 <td>{member.profession}</td>
+                <td>{member.new_member}</td>
               </tr>
             ))}
         </table>
       </section>
       <section className="lastPart">
-        <div className="lastUpdate">Last updated on 28/05/2024 by KING</div>
+        <div className="lastUpdate">Last updated by Media Team</div>
         <div className="page">
           <span>page 1 of 2</span>
           <div>
