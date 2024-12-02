@@ -31,14 +31,18 @@ const AddMembers = () => {
   const [action, setAction] = useState(false);
   const [allMembers, setallMembers] = useState([]);
   const [members, setMembers] = useState({
+    full_names: "",
+    serial_no: "",
     email: "",
     phone_no: null,
     address: "",
     bus_stop: "",
     birth_day: "",
+    worker: "",
     nextof_kin: "",
     spouse_name: "",
     number_children: "",
+    new_member: "",
     profession: "",
   });
 
@@ -73,48 +77,48 @@ const AddMembers = () => {
     fetchMember();
   }, []);
 
-  const handleSelect = (e) => {
-    const value = e.target.value;
-    setWorker(value);
-  };
-  const handleMember = (e) => {
-    const value = e.target.value;
-    setNewMembers(value);
-  };
+  // const handleSelect = (e) => {
+  //   const value = e.target.value;
+  //   setWorker(value);
+  // };
+  // const handleMember = (e) => {
+  //   const value = e.target.value;
+  //   setNewMembers(value);
+  // };
 
-  const handleNames = (e) => {
-    const value = e.target.value;
-    const trimmedVal = value.trim();
-    setFullName(trimmedVal);
-  };
+  // const handleNames = (e) => {
+  //   const value = e.target.value;
+  //   const trimmedVal = value.trim();
+  //   setFullName(trimmedVal);
+  // };
 
-  const handleSerialNo = (e) => {
-    const value = e.target.value;
-    const trimmedVal = value.toUpperCase().trim();
-    setSerialno(trimmedVal);
-  };
+  // const handleSerialNo = (e) => {
+  //   const value = e.target.value;
+  //   const trimmedVal = value.toUpperCase().trim();
+  //   setSerialno(trimmedVal);
+  // };
 
-  const maritalSta = (e) => {
+  // const maritalSta = (e) => {};
+
+  const handleChange = (e) => {
     if (e.target.value === "Married") {
       setStatus(true);
       setMarital(e.target.value);
     } else {
       setStatus(false);
     }
-  };
-
-  const handleChange = (e) => {
-    setMembers((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+    setMembers((prev) => ({
+      ...prev,
+      [e.target.id]: e.target.value,
+    }));
   };
 
   const subMembers = {
-    ...members,
-    full_names: fullName,
-    serial_no: serialNo,
-    worker: worker,
     marital_status: marital,
-    new_member: newMembers,
+    ...members,
   };
+
+  // const updated = { ...subMembers };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -130,23 +134,23 @@ const AddMembers = () => {
       }
     } else {
       allMembers.forEach((member) => {
-        const rest = member.full_names === trimmedVal ? "true" : "false";
-        if (rest === "true") {
+        if (member.full_names === members.full_names) {
           alert("Name already in Databaase, plese change");
         }
       });
 
       allMembers.forEach((member) => {
-        const rest = member.serial_no === trimmedVal ? "true" : "false";
-        if (rest === "true") {
+        if (member.serial_no === members.serial_no) {
           alert("Serial No alredy in Database, Please change");
         }
       });
       try {
+        console.log("about");
         await axios.post(
           "https://peace-tab-database.onrender.com/api/member/create_memeber",
           subMembers
         );
+        console.log("sent");
         alert("Member created");
         wimdow.location.reload();
       } catch (error) {
@@ -168,7 +172,7 @@ const AddMembers = () => {
               type="text"
               placeholder="Full Names"
               id="full_names"
-              onChange={handleNames}
+              onChange={handleChange}
               value={members?.full_names}
             />
           </div>
@@ -178,7 +182,7 @@ const AddMembers = () => {
               type="text"
               placeholder="Serial Number"
               id="serial_no"
-              onChange={handleSerialNo}
+              onChange={handleChange}
               value={members?.serial_no}
             />
           </div>
@@ -235,7 +239,7 @@ const AddMembers = () => {
           </div>
           <div className="membrsOpt">
             <label>A Worker</label>
-            <select className="select" onChange={handleSelect}>
+            <select className="select" id="worker" onChange={handleChange}>
               {optionsW.map((option) => (
                 <option value={option.value}>{option.label}</option>
               ))}
@@ -253,7 +257,11 @@ const AddMembers = () => {
           </div>
           <div className="membrsOpt">
             <label>Marital Status</label>
-            <select className="select" onChange={(e) => maritalSta(e)}>
+            <select
+              className="select"
+              id="marital_status"
+              onChange={(e) => handleChange(e)}
+            >
               {optionsM.map((option) => (
                 <option value={option.value}>{option.label}</option>
               ))}
@@ -295,7 +303,7 @@ const AddMembers = () => {
           </div>
           <div className="membrsOpt">
             <label>New Member</label>
-            <select className="select" onChange={handleMember}>
+            <select className="select" id="new_member" onChange={handleChange}>
               {optionsNewM.map((option) => (
                 <option value={option.value}>{option.label}</option>
               ))}
@@ -311,3 +319,5 @@ const AddMembers = () => {
 };
 
 export default AddMembers;
+
+// https://peace-tab-database.onrender.com/
