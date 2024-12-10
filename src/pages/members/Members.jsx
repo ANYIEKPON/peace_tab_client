@@ -46,7 +46,7 @@ const Members = () => {
       }
     };
     getMembers();
-  }, [dat.current]);
+  }, [deleteMember]);
 
   const showDisplay = (e) => {
     //  const numbs = Math.ceil(members.length / 8);
