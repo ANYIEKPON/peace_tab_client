@@ -40,6 +40,7 @@ const AddMembers = () => {
     birth_day: "",
     worker: "",
     nextof_kin: "",
+    marital_status: "",
     spouse_name: "",
     number_children: "",
     new_member: "",
@@ -98,15 +99,16 @@ const AddMembers = () => {
   //   setSerialno(trimmedVal);
   // };
 
-  // const maritalSta = (e) => {};
-
-  const handleChange = (e) => {
+  const maritalSta = (e) => {
     if (e.target.value === "Married") {
       setStatus(true);
       setMarital(e.target.value);
     } else {
       setStatus(false);
     }
+  };
+
+  const handleChange = (e) => {
     setMembers((prev) => ({
       ...prev,
       [e.target.id]: e.target.value,
@@ -114,8 +116,8 @@ const AddMembers = () => {
   };
 
   const subMembers = {
-    marital_status: marital,
     ...members,
+    marital_status: marital,
   };
 
   // const updated = { ...subMembers };
@@ -257,11 +259,7 @@ const AddMembers = () => {
           </div>
           <div className="membrsOpt">
             <label>Marital Status</label>
-            <select
-              className="select"
-              id="marital_status"
-              onChange={(e) => handleChange(e)}
-            >
+            <select className="select" onChange={(e) => maritalSta(e)}>
               {optionsM.map((option) => (
                 <option value={option.value}>{option.label}</option>
               ))}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import "./members.scss";
 import {
@@ -9,6 +9,9 @@ import { Link } from "react-router-dom";
 
 const Members = () => {
   const [members, setMembers] = useState([]);
+  const [pages, setPages] = useState([]);
+  const [display, setDisplay] = useState([]);
+  const dat = useRef(members);
 
   const deleteMember = async (e) => {
     e.preventDefault();
@@ -21,19 +24,44 @@ const Members = () => {
     }
   };
 
+  console.log(members.length);
+
   useEffect(() => {
     const getMembers = async () => {
+      const arr = [];
       try {
         const res = await axios.get(
           "https://peace-tab-database.onrender.com/api/member"
         );
         setMembers(res.data);
+        const resData = members.slice(0, 8);
+        setDisplay(resData);
+        const numb = Math.ceil(members.length / 8);
+        for (let i = 1; i <= numb; i++) {
+          arr.push(i);
+        }
+        setPages(arr);
       } catch (error) {
         console.log(error);
       }
     };
     getMembers();
-  }, [deleteMember]);
+  }, [dat.current]);
+
+  const showDisplay = (e) => {
+    //  const numbs = Math.ceil(members.length / 8);
+    const numb = e.target.id;
+    const numToUse = numb - 1;
+    const fIndex = numToUse * 8;
+    const jstRes = numb * 8;
+    const addOne = jstRes;
+    const res = members.slice(fIndex, addOne);
+    setDisplay(res);
+
+    // for(let i = 1; i = numb; i++) {
+
+    // }
+  };
 
   return (
     <div className="tableWrapper">
@@ -51,8 +79,8 @@ const Members = () => {
             <th>Profession</th>
             <th>New Member</th>
           </tr>
-          {members &&
-            members.map((member) => (
+          {display &&
+            display.map((member) => (
               <tr className="tableData" key={member._id}>
                 <td className="sn">{member.serial_no}</td>
                 <td className="editable">
@@ -86,13 +114,20 @@ const Members = () => {
       <section className="lastPart">
         <div className="lastUpdate">Last updated by Media Team</div>
         <div className="page">
-          <span>page 1 of 2</span>
-          <div>
+          <span>
+            page
+            {pages.map((pp, i) => (
+              <p id={i + 1} key={i} onClick={showDisplay}>
+                {pp}
+              </p>
+            ))}
+          </span>
+          {/* <div>
             <MdOutlineKeyboardArrowLeft />
           </div>
           <div>
             <MdOutlineKeyboardArrowRight />
-          </div>
+          </div> */}
         </div>
       </section>
     </div>
